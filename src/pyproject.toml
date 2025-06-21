@@ -1,0 +1,9 @@
+[project]
+name = "factorio-headless"
+version = "0.1.0"
+description = "Main Manager handler to ensure auto update of Factorio and Mods"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "requests>=2.32.4",
+]
