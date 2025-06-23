@@ -161,7 +161,7 @@ class Manager():
             if not self.factorio.is_running:
                 LOG.info("Factorio server is not running, starting...")
                 self.factorio.start(self.factorio.generate_config())
-            # time.sleep(20)
+            # time.sleep(60)
             time.sleep(5)
             LOG.debug("Finished running loop iteration, sleeping for 60 seconds.")
 

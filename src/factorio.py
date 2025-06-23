@@ -154,20 +154,6 @@ class Factorio:
             "--console-log", os.path.join(self.mount_dir, 'factorio-console.log'),
         ]
 
-        # config = [
-        #     f"--port {self.port}",
-        #     f"--rcon-port {self.rcon_port}",
-        #     f"--server-settings {self.server_settings}",
-        #     f"--server-banlist {self.server_banlist}",
-        #     f"--server-whitelist {self.server_whitelist}",
-        #     f'--use-server-whitelist',
-        #     f'--server-adminlist {self.server_adminlist }',
-        #     f"--rcon-password {self.rcon_password}",
-        #     f"--server-id {os.path.join(self.config_dir, 'server-id.json')}",
-        #     f"--mod-directory {self.mods_dir}",
-        #     f"--console-log {os.path.join(self.mount_dir, 'factorio-console.log')}",
-        # ]
-
         if save:
             config = config + ["--start-server", os.path.join(self.saves_dir, save) + ".zip"]
         elif load_latest:
