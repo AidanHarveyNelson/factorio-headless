@@ -108,24 +108,36 @@ class Factorio:
             shutil.copyfile(os.path.join(self.factorio_dir, 'data', 'map-settings.example.json'), file_path)
         return file_path
 
+    @property
+    def is_running(self) -> bool:
+        """Check if the Factorio server is running."""
+        if self._process is None:
+            return False
+        return True
+
+    def has_saves(self) -> bool:
+        """Check if there are any saves available."""
+        LOG.info("Checking for existing saves...")
+        has_saves = any(os.path.isfile(os.path.join(self.saves_dir, f)) for f in os.listdir(self.saves_dir))
+        return has_saves
+
     def create_save(self, save_name: str, preset: str = None) -> str:
         """Create a new save file."""
         if os.path.isfile(os.path.join(self.saves_dir, save_name)):
             LOG.error('Unable to create save, file already exists')
 
-        run_command = [# self._run_command[] + [
-            self._run_command[-1],
-            f"--create {os.path.join(self.saves_dir, save_name)}.zip",
-            f"--map-gen-settings {self.map_gen_settings}",
-            f"--map-settings {self.map_settings}",
+        run_command =  self._run_command + [
+            "--create", os.path.join(self.saves_dir, save_name) + ".zip",
+            "--map-gen-settings", self.map_gen_settings,
+            "--map-settings", self.map_settings,
         ]
 
         if preset:
-            run_command.append(f"--preset {preset}")
+            run_command = run_command + ["--preset", preset]
 
-        LOG.info(f"Executing command: {' '.join(run_command)}")
-        subprocess.run(' '.join(run_command), shell=True, check=True)
-        LOG.info(f"Factorio Created Save with name: {save_name}")
+        LOG.info("Executing command: %s", ' '.join(run_command))
+        subprocess.run(run_command, check=True)
+        LOG.info("Factorio Created Save with name: %s", save_name)
         return save_name
 
     def generate_config(self, save:str = None, load_latest: bool = False) -> list:
@@ -164,28 +176,33 @@ class Factorio:
         elif load_latest:
             config = config + ["--start-server-load-latest"]
         else:
-            _save_name = self.create_save('default_save')
-            config = config + ["--start-server", os.path.join(self.saves_dir, _save_name) + ".zip"]
+            if not self.has_saves():
+                LOG.info("No saves found, creating a default save.")
+                # Create a default save if none exist
+                _save_name = self.create_save('default_save')
+                config = config + ["--start-server", os.path.join(self.saves_dir, _save_name) + ".zip"]
+            else:
+                LOG.info("No save specified, using the latest save.")
+                config = config + ["--start-server-load-latest"]
 
-        LOG.debug(f"Generated configuration: {config}")
+        LOG.debug("Generated configuration: %s", config)
         return config
 
     def is_players_online(self) -> bool:
         """Check if players are online."""
         LOG.info("Checking if players are online...")
         return False
-    
+
     def start(self, config: list):
         """Run the Factorio server."""
-        LOG.info(f"Running Factorio server on port {self.port} with RCON port {self.rcon_port}")
+        LOG.info("Running Factorio server on port %s with RCON port %s", self.port, self.rcon_port)
         run_command = self._run_command + config
 
-        LOG.info(f"Executing command: {' '.join(run_command)}")
-        self._process = subprocess.Popen(' '.join(run_command),
-                                         stdout=open('/var/log/factorio/access.log', 'w'),
-                                         stderr=open('/var/log/factorio/error.log', 'w'),
-                                         shell=True,
-                                         preexec_fn=os.setsid)
+        LOG.info("Executing command: %s", " ".join(run_command))
+        self._process = subprocess.Popen(run_command,
+                                         stdout=open('/var/log/factorio/access.log', 'w', encoding='utf-8'),
+                                         stderr=open('/var/log/factorio/error.log', 'w', encoding='utf-8'),
+                                         start_new_session=True)
         # self._process = subprocess.run(run_command)
         # self._process = subprocess.Popen(run_command,
         #                                  stdout=open('/var/log/factorio/access.log', 'w'),
@@ -194,7 +211,7 @@ class Factorio:
         print(self._process)
         print(os.system('ps aux'))
         # self._process = subprocess.Popen(run_command)
-        LOG.info(f"Factorio server started with PID {self._process.pid}")
+        LOG.info("Factorio server started with PID %s", self._process.pid)
         return
 
     def stop(self) -> bool:
@@ -213,8 +230,13 @@ class Factorio:
 
         os.system('ps aux')
         print('Parent')
+        print(os.getpgid(self._process.pid))
+        LOG.info("Factorio server stopped with PID %s", self._process.pid)
         os.killpg(os.getpgid(self._process.pid), signal.SIGTERM)
         os.system('ps aux')
+        LOG.debug("Waiting for Factorio server process to terminate...")
+        self._process.wait(60)
+        LOG.info("Factorio server process terminated.")
         # results = subprocess.run(f'ps aux | grep factorio | grep -v grep', shell=True, capture_output=True, text=True)
         # if results.returncode != 0:
         #     LOG.error("Failed to find Factorio server process.")

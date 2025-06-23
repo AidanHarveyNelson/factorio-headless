@@ -897,3 +897,252 @@
 [2025-06-21 13:23:52,674] INFO: Running Factorio server on port 34197 with RCON port 27015
 [2025-06-21 13:23:52,674] INFO: Executing command: runuser -u factorio -g factorio -- /opt/factorio/bin/x64/factorio --port 34197 --rcon-port 27015 --server-settings /factorio/config/server-settings.json --server-banlist /factorio/config/server-banlist.json --server-whitelist /factorio/config/server-whitelist.json --use-server-whitelist --server-adminlist /factorio/config/server-adminlist.json --rcon-password A5H2XN213A23CFD --server-id /factorio/config/server-id.json --mod-directory /factorio/mods --console-log /factorio/factorio-console.log --start-server /factorio/saves/default_save.zip
 [2025-06-21 13:23:52,687] INFO: Factorio server started with PID 2441
+[2025-06-22 23:41:20,533] INFO: Manager initialized successfully.
+[2025-06-22 23:41:20,535] INFO: Factorio server files not found, downloading...
+[2025-06-22 23:41:21,429] INFO: Pulling factorio files for version 2.0.55
+[2025-06-22 23:41:21,532] INFO: Installing Factorio server files from /tmp/factorio_downloads/factorio-headless_linux_2.0.55.tar.xz to /opt/factorio
+[2025-06-22 23:41:25,095] INFO: Creating necessary directories in /opt/factorio
+[2025-06-22 23:41:25,096] INFO: Setting permissions for Factorio server files in /opt/factorio and /factorio
+[2025-06-22 23:41:25,191] INFO: Executing command: /opt/factorio/bin/x64/factorio --create /factorio/saves/default_save.zip --map-gen-settings /factorio/config/map-gen-settings.json --map-settings /factorio/config/map-settings.json
+[2025-06-22 23:41:28,850] INFO: Factorio Created Save with name: default_save
+[2025-06-22 23:41:28,852] INFO: Running Factorio server on port 34197 with RCON port 27015
+[2025-06-22 23:41:28,852] INFO: Executing command: runuser -u factorio -g factorio -- /opt/factorio/bin/x64/factorio --port 34197 --rcon-port 27015 --server-settings /factorio/config/server-settings.json --server-banlist /factorio/config/server-banlist.json --server-whitelist /factorio/config/server-whitelist.json --use-server-whitelist --server-adminlist /factorio/config/server-adminlist.json --rcon-password LNYWAPGWX80AYLK --server-id /factorio/config/server-id.json --mod-directory /factorio/mods --console-log /factorio/factorio-console.log --start-server /factorio/saves/default_save.zip
+[2025-06-22 23:41:28,901] INFO: Factorio server started with PID 663
+[2025-06-22 23:42:17,526] INFO: Manager initialized successfully.
+[2025-06-22 23:42:17,527] INFO: Factorio server is not running, starting...
+[2025-06-22 23:42:17,529] INFO: Executing command: /opt/factorio/bin/x64/factorio --create /factorio/saves/default_save.zip --map-gen-settings /factorio/config/map-gen-settings.json --map-settings /factorio/config/map-settings.json
+[2025-06-22 23:42:21,328] INFO: Factorio Created Save with name: default_save
+[2025-06-22 23:42:21,329] INFO: Running Factorio server on port 34197 with RCON port 27015
+[2025-06-22 23:42:21,329] INFO: Executing command: runuser -u factorio -g factorio -- /opt/factorio/bin/x64/factorio --port 34197 --rcon-port 27015 --server-settings /factorio/config/server-settings.json --server-banlist /factorio/config/server-banlist.json --server-whitelist /factorio/config/server-whitelist.json --use-server-whitelist --server-adminlist /factorio/config/server-adminlist.json --rcon-password LNYWAPGWX80AYLK --server-id /factorio/config/server-id.json --mod-directory /factorio/mods --console-log /factorio/factorio-console.log --start-server /factorio/saves/default_save.zip
+[2025-06-22 23:42:21,381] INFO: Factorio server started with PID 1356
+[2025-06-22 23:43:01,830] INFO: Manager initialized successfully.
+[2025-06-22 23:43:01,832] INFO: Factorio server is not running, starting...
+[2025-06-22 23:43:01,832] INFO: Executing command: /opt/factorio/bin/x64/factorio --create /factorio/saves/default_save.zip --map-gen-settings /factorio/config/map-gen-settings.json --map-settings /factorio/config/map-settings.json
+[2025-06-22 23:43:05,227] INFO: Factorio Created Save with name: default_save
+[2025-06-22 23:43:05,227] INFO: Running Factorio server on port 34197 with RCON port 27015
+[2025-06-22 23:43:05,228] INFO: Executing command: runuser -u factorio -g factorio -- /opt/factorio/bin/x64/factorio --port 34197 --rcon-port 27015 --server-settings /factorio/config/server-settings.json --server-banlist /factorio/config/server-banlist.json --server-whitelist /factorio/config/server-whitelist.json --use-server-whitelist --server-adminlist /factorio/config/server-adminlist.json --rcon-password LNYWAPGWX80AYLK --server-id /factorio/config/server-id.json --mod-directory /factorio/mods --console-log /factorio/factorio-console.log --start-server /factorio/saves/default_save.zip
+[2025-06-22 23:43:05,269] INFO: Factorio server started with PID 2048
+[2025-06-22 23:43:39,556] INFO: Manager initialized successfully.
+[2025-06-22 23:43:39,557] INFO: Factorio server files not found, downloading...
+[2025-06-22 23:43:39,559] INFO: Pulling factorio files for version 2.0.55
+[2025-06-22 23:43:39,636] INFO: Installing Factorio server files from /tmp/factorio_downloads/factorio-headless_linux_2.0.55.tar.xz to /opt/factorio
+[2025-06-22 23:43:42,989] INFO: Creating necessary directories in /opt/factorio
+[2025-06-22 23:43:42,990] INFO: Setting permissions for Factorio server files in /opt/factorio and /factorio
+[2025-06-22 23:43:43,075] INFO: Executing command: runuser -u factorio -g factorio -- /opt/factorio/bin/x64/factorio --create /factorio/saves/default_save.zip --map-gen-settings /factorio/config/map-gen-settings.json --map-settings /factorio/config/map-settings.json
+[2025-06-22 23:43:46,429] INFO: Factorio Created Save with name: default_save
+[2025-06-22 23:43:46,431] INFO: Running Factorio server on port 34197 with RCON port 27015
+[2025-06-22 23:43:46,431] INFO: Executing command: runuser -u factorio -g factorio -- /opt/factorio/bin/x64/factorio --port 34197 --rcon-port 27015 --server-settings /factorio/config/server-settings.json --server-banlist /factorio/config/server-banlist.json --server-whitelist /factorio/config/server-whitelist.json --use-server-whitelist --server-adminlist /factorio/config/server-adminlist.json --rcon-password LNYWAPGWX80AYLK --server-id /factorio/config/server-id.json --mod-directory /factorio/mods --console-log /factorio/factorio-console.log --start-server /factorio/saves/default_save.zip
+[2025-06-22 23:43:46,476] INFO: Factorio server started with PID 2746
+[2025-06-22 23:44:41,516] INFO: Checking for Factorio server updates...
+[2025-06-22 23:45:42,460] INFO: Checking for Factorio server updates...
+[2025-06-22 23:46:43,249] INFO: Checking for Factorio server updates...
+[2025-06-22 23:47:24,614] INFO: Manager initialized successfully.
+[2025-06-22 23:47:24,615] INFO: Factorio server is not running, starting...
+[2025-06-22 23:47:24,615] INFO: Checking for existing saves...
+[2025-06-22 23:47:24,616] INFO: No save specified, using the latest save.
+[2025-06-22 23:47:24,616] INFO: Running Factorio server on port 34197 with RCON port 27015
+[2025-06-22 23:47:24,616] INFO: Executing command: runuser -u factorio -g factorio -- /opt/factorio/bin/x64/factorio --port 34197 --rcon-port 27015 --server-settings /factorio/config/server-settings.json --server-banlist /factorio/config/server-banlist.json --server-whitelist /factorio/config/server-whitelist.json --use-server-whitelist --server-adminlist /factorio/config/server-adminlist.json --rcon-password LNYWAPGWX80AYLK --server-id /factorio/config/server-id.json --mod-directory /factorio/mods --console-log /factorio/factorio-console.log --start-server-load-latest
+[2025-06-22 23:47:24,666] INFO: Factorio server started with PID 2801
+[2025-06-22 23:47:56,143] INFO: Manager initialized successfully.
+[2025-06-22 23:47:56,145] INFO: Factorio server files not found, downloading...
+[2025-06-22 23:47:56,146] INFO: Pulling factorio files for version 2.0.53
+[2025-06-22 23:47:56,250] INFO: Installing Factorio server files from /tmp/factorio_downloads/factorio-headless_linux_2.0.53.tar.xz to /opt/factorio
+[2025-06-22 23:48:00,641] INFO: Creating necessary directories in /opt/factorio
+[2025-06-22 23:48:00,644] INFO: Setting permissions for Factorio server files in /opt/factorio and /factorio
+[2025-06-22 23:48:00,732] INFO: Checking for existing saves...
+[2025-06-22 23:48:00,732] INFO: No saves found, creating a default save.
+[2025-06-22 23:48:00,733] INFO: Executing command: runuser -u factorio -g factorio -- /opt/factorio/bin/x64/factorio --create /factorio/saves/default_save.zip --map-gen-settings /factorio/config/map-gen-settings.json --map-settings /factorio/config/map-settings.json
+[2025-06-22 23:48:05,091] INFO: Factorio Created Save with name: default_save
+[2025-06-22 23:48:05,093] INFO: Running Factorio server on port 34197 with RCON port 27015
+[2025-06-22 23:48:05,093] INFO: Executing command: runuser -u factorio -g factorio -- /opt/factorio/bin/x64/factorio --port 34197 --rcon-port 27015 --server-settings /factorio/config/server-settings.json --server-banlist /factorio/config/server-banlist.json --server-whitelist /factorio/config/server-whitelist.json --use-server-whitelist --server-adminlist /factorio/config/server-adminlist.json --rcon-password W8BOZTXMAHEL8DL --server-id /factorio/config/server-id.json --mod-directory /factorio/mods --console-log /factorio/factorio-console.log --start-server /factorio/saves/default_save.zip
+[2025-06-22 23:48:05,157] INFO: Factorio server started with PID 663
+[2025-06-22 23:49:00,183] INFO: Checking for Factorio server updates...
+[2025-06-22 23:49:01,297] INFO: Current version 2.0.53 does not match expected version stable.
+[2025-06-22 23:49:01,298] INFO: Checking if players are online...
+[2025-06-22 23:49:01,298] INFO: Stopping Factorio server to update files...
+[2025-06-22 23:49:01,471] INFO: Updating Factorio server files...
+[2025-06-22 23:49:01,715] INFO: Backing up Factorio server files to /tmp/factorio_backup/
+[2025-06-22 23:49:03,164] INFO: Backup completed successfully to /tmp/factorio_backup/
+[2025-06-22 23:49:03,165] INFO: Removing old Factorio directory
+[2025-06-22 23:49:03,434] INFO: Pulling factorio files for version 2.0.55
+[2025-06-22 23:49:03,517] INFO: Installing Factorio server files from /tmp/factorio_downloads/factorio-headless_linux_2.0.55.tar.xz to /opt/factorio
+[2025-06-22 23:49:07,889] INFO: Creating necessary directories in /opt/factorio
+[2025-06-22 23:49:08,000] INFO: Setting permissions for Factorio server files in /opt/factorio and /factorio
+[2025-06-22 23:49:08,080] INFO: Checking for existing saves...
+[2025-06-22 23:49:08,080] INFO: No save specified, using the latest save.
+[2025-06-22 23:49:08,081] INFO: Running Factorio server on port 34197 with RCON port 27015
+[2025-06-22 23:49:08,081] INFO: Executing command: runuser -u factorio -g factorio -- /opt/factorio/bin/x64/factorio --port 34197 --rcon-port 27015 --server-settings /factorio/config/server-settings.json --server-banlist /factorio/config/server-banlist.json --server-whitelist /factorio/config/server-whitelist.json --use-server-whitelist --server-adminlist /factorio/config/server-adminlist.json --rcon-password W8BOZTXMAHEL8DL --server-id /factorio/config/server-id.json --mod-directory /factorio/mods --console-log /factorio/factorio-console.log --start-server-load-latest
+[2025-06-22 23:49:08,145] INFO: Factorio server started with PID 725
+[2025-06-22 23:50:08,167] INFO: Checking for Factorio server updates...
+[2025-06-22 23:51:08,941] INFO: Checking for Factorio server updates...
+[2025-06-22 23:52:19,857] INFO: Manager initialized successfully.
+[2025-06-22 23:52:19,859] INFO: Factorio server files not found, downloading...
+[2025-06-22 23:52:19,860] INFO: Pulling factorio files for version 2.0.55
+[2025-06-22 23:52:19,947] INFO: Installing Factorio server files from /tmp/factorio_downloads/factorio-headless_linux_2.0.55.tar.xz to /opt/factorio
+[2025-06-22 23:52:29,740] INFO: Manager initialized successfully.
+[2025-06-22 23:52:29,741] INFO: Factorio server files not found, downloading...
+[2025-06-22 23:52:29,742] INFO: Pulling factorio files for version 2.0.53
+[2025-06-22 23:52:29,793] INFO: Installing Factorio server files from /tmp/factorio_downloads/factorio-headless_linux_2.0.53.tar.xz to /opt/factorio
+[2025-06-22 23:52:33,543] INFO: Creating necessary directories in /opt/factorio
+[2025-06-22 23:52:33,544] INFO: Setting permissions for Factorio server files in /opt/factorio and /factorio
+[2025-06-22 23:52:33,615] INFO: Checking for existing saves...
+[2025-06-22 23:52:33,615] INFO: No saves found, creating a default save.
+[2025-06-22 23:52:33,615] INFO: Executing command: runuser -u factorio -g factorio -- /opt/factorio/bin/x64/factorio --create /factorio/saves/default_save.zip --map-gen-settings /factorio/config/map-gen-settings.json --map-settings /factorio/config/map-settings.json
+[2025-06-22 23:52:37,364] INFO: Factorio Created Save with name: default_save
+[2025-06-22 23:52:37,367] DEBUG: Generated configuration: ['--port', '34197', '--rcon-port', '27015', '--server-settings', '/factorio/config/server-settings.json', '--server-banlist', '/factorio/config/server-banlist.json', '--server-whitelist', '/factorio/config/server-whitelist.json', '--use-server-whitelist', '--server-adminlist', '/factorio/config/server-adminlist.json', '--rcon-password', '4WXTMTPKEQVMJRX', '--server-id', '/factorio/config/server-id.json', '--mod-directory', '/factorio/mods', '--console-log', '/factorio/factorio-console.log', '--start-server', '/factorio/saves/default_save.zip']
+[2025-06-22 23:52:37,369] INFO: Running Factorio server on port 34197 with RCON port 27015
+[2025-06-22 23:52:37,370] INFO: Executing command: runuser -u factorio -g factorio -- /opt/factorio/bin/x64/factorio --port 34197 --rcon-port 27015 --server-settings /factorio/config/server-settings.json --server-banlist /factorio/config/server-banlist.json --server-whitelist /factorio/config/server-whitelist.json --use-server-whitelist --server-adminlist /factorio/config/server-adminlist.json --rcon-password 4WXTMTPKEQVMJRX --server-id /factorio/config/server-id.json --mod-directory /factorio/mods --console-log /factorio/factorio-console.log --start-server /factorio/saves/default_save.zip
+[2025-06-22 23:52:37,461] INFO: Factorio server started with PID 664
+[2025-06-22 23:52:37,462] DEBUG: Factorio server is running with the latest files.
+[2025-06-22 23:52:42,464] DEBUG: Factorio server is running with the latest files.
+[2025-06-22 23:52:47,470] DEBUG: Factorio server is running with the latest files.
+[2025-06-22 23:52:52,475] DEBUG: Factorio server is running with the latest files.
+[2025-06-22 23:52:57,480] DEBUG: Factorio server is running with the latest files.
+[2025-06-22 23:53:02,484] DEBUG: Factorio server is running with the latest files.
+[2025-06-22 23:53:07,492] DEBUG: Factorio server is running with the latest files.
+[2025-06-22 23:53:12,495] DEBUG: Factorio server is running with the latest files.
+[2025-06-22 23:53:17,498] DEBUG: Factorio server is running with the latest files.
+[2025-06-22 23:53:22,503] DEBUG: Factorio server is running with the latest files.
+[2025-06-22 23:53:27,506] DEBUG: Factorio server is running with the latest files.
+[2025-06-22 23:53:32,509] INFO: Checking for Factorio server updates...
+[2025-06-22 23:53:32,547] DEBUG: Starting new HTTPS connection (1): factorio.com:443
+[2025-06-22 23:53:33,366] DEBUG: https://factorio.com:443 "GET /api/latest-releases HTTP/1.1" 200 None
+[2025-06-22 23:53:33,374] INFO: Current version 2.0.53 does not match expected version stable.
+[2025-06-22 23:53:33,375] INFO: Checking if players are online...
+[2025-06-22 23:53:33,376] INFO: Stopping Factorio server to update files...
+[2025-06-22 23:53:33,535] INFO: Updating Factorio server files...
+[2025-06-22 23:53:33,777] DEBUG: https://factorio.com:443 "GET /api/latest-releases HTTP/1.1" 200 None
+[2025-06-22 23:53:33,791] INFO: Backing up Factorio server files to /tmp/factorio_backup/
+[2025-06-22 23:53:34,859] INFO: Backup completed successfully to /tmp/factorio_backup/
+[2025-06-22 23:53:34,860] INFO: Removing old Factorio directory
+[2025-06-22 23:53:35,048] INFO: Pulling factorio files for version 2.0.55
+[2025-06-22 23:53:35,138] INFO: Installing Factorio server files from /tmp/factorio_downloads/factorio-headless_linux_2.0.55.tar.xz to /opt/factorio
+[2025-06-22 23:53:38,478] INFO: Creating necessary directories in /opt/factorio
+[2025-06-22 23:53:38,766] INFO: Setting permissions for Factorio server files in /opt/factorio and /factorio
+[2025-06-22 23:53:38,885] INFO: Checking for existing saves...
+[2025-06-22 23:53:38,886] INFO: No save specified, using the latest save.
+[2025-06-22 23:53:38,887] DEBUG: Generated configuration: ['--port', '34197', '--rcon-port', '27015', '--server-settings', '/factorio/config/server-settings.json', '--server-banlist', '/factorio/config/server-banlist.json', '--server-whitelist', '/factorio/config/server-whitelist.json', '--use-server-whitelist', '--server-adminlist', '/factorio/config/server-adminlist.json', '--rcon-password', '4WXTMTPKEQVMJRX', '--server-id', '/factorio/config/server-id.json', '--mod-directory', '/factorio/mods', '--console-log', '/factorio/factorio-console.log', '--start-server-load-latest']
+[2025-06-22 23:53:38,889] INFO: Running Factorio server on port 34197 with RCON port 27015
+[2025-06-22 23:53:38,889] INFO: Executing command: runuser -u factorio -g factorio -- /opt/factorio/bin/x64/factorio --port 34197 --rcon-port 27015 --server-settings /factorio/config/server-settings.json --server-banlist /factorio/config/server-banlist.json --server-whitelist /factorio/config/server-whitelist.json --use-server-whitelist --server-adminlist /factorio/config/server-adminlist.json --rcon-password 4WXTMTPKEQVMJRX --server-id /factorio/config/server-id.json --mod-directory /factorio/mods --console-log /factorio/factorio-console.log --start-server-load-latest
+[2025-06-22 23:53:38,965] INFO: Factorio server started with PID 726
+[2025-06-22 23:53:38,966] DEBUG: Factorio server is running with the latest files.
+[2025-06-22 23:53:43,973] DEBUG: Factorio server is running with the latest files.
+[2025-06-22 23:53:48,978] DEBUG: Factorio server is running with the latest files.
+[2025-06-22 23:53:53,983] DEBUG: Factorio server is running with the latest files.
+[2025-06-22 23:53:58,987] DEBUG: Factorio server is running with the latest files.
+[2025-06-22 23:54:03,991] DEBUG: Factorio server is running with the latest files.
+[2025-06-22 23:54:08,998] DEBUG: Factorio server is running with the latest files.
+[2025-06-22 23:54:14,005] DEBUG: Factorio server is running with the latest files.
+[2025-06-22 23:54:19,008] DEBUG: Factorio server is running with the latest files.
+[2025-06-22 23:54:24,012] DEBUG: Factorio server is running with the latest files.
+[2025-06-22 23:54:29,019] DEBUG: Factorio server is running with the latest files.
+[2025-06-22 23:55:35,283] INFO: Manager initialized successfully.
+[2025-06-22 23:55:35,284] INFO: Factorio server files not found, downloading...
+[2025-06-22 23:55:35,285] INFO: Pulling factorio files for version 2.0.53
+[2025-06-22 23:55:35,354] INFO: Installing Factorio server files from /tmp/factorio_downloads/factorio-headless_linux_2.0.53.tar.xz to /opt/factorio
+[2025-06-22 23:55:40,138] INFO: Creating necessary directories in /opt/factorio
+[2025-06-22 23:55:40,141] INFO: Setting permissions for Factorio server files in /opt/factorio and /factorio
+[2025-06-22 23:55:40,310] INFO: Checking for existing saves...
+[2025-06-22 23:55:40,311] INFO: No saves found, creating a default save.
+[2025-06-22 23:55:40,312] INFO: Executing command: runuser -u factorio -g factorio -- /opt/factorio/bin/x64/factorio --create /factorio/saves/default_save.zip --map-gen-settings /factorio/config/map-gen-settings.json --map-settings /factorio/config/map-settings.json
+[2025-06-22 23:55:43,705] INFO: Factorio Created Save with name: default_save
+[2025-06-22 23:55:43,705] DEBUG: Generated configuration: ['--port', '34197', '--rcon-port', '27015', '--server-settings', '/factorio/config/server-settings.json', '--server-banlist', '/factorio/config/server-banlist.json', '--server-whitelist', '/factorio/config/server-whitelist.json', '--use-server-whitelist', '--server-adminlist', '/factorio/config/server-adminlist.json', '--rcon-password', 'JOVLYXYSVJE5VPP', '--server-id', '/factorio/config/server-id.json', '--mod-directory', '/factorio/mods', '--console-log', '/factorio/factorio-console.log', '--start-server', '/factorio/saves/default_save.zip']
+[2025-06-22 23:55:43,706] INFO: Running Factorio server on port 34197 with RCON port 27015
+[2025-06-22 23:55:43,706] INFO: Executing command: runuser -u factorio -g factorio -- /opt/factorio/bin/x64/factorio --port 34197 --rcon-port 27015 --server-settings /factorio/config/server-settings.json --server-banlist /factorio/config/server-banlist.json --server-whitelist /factorio/config/server-whitelist.json --use-server-whitelist --server-adminlist /factorio/config/server-adminlist.json --rcon-password JOVLYXYSVJE5VPP --server-id /factorio/config/server-id.json --mod-directory /factorio/mods --console-log /factorio/factorio-console.log --start-server /factorio/saves/default_save.zip
+[2025-06-22 23:55:43,752] INFO: Factorio server started with PID 662
+[2025-06-22 23:55:43,752] DEBUG: Factorio server is running with the latest files.
+[2025-06-22 23:55:48,759] DEBUG: Factorio server is running with the latest files.
+[2025-06-22 23:55:53,765] DEBUG: Factorio server is running with the latest files.
+[2025-06-22 23:55:58,769] DEBUG: Factorio server is running with the latest files.
+[2025-06-22 23:56:03,772] DEBUG: Factorio server is running with the latest files.
+[2025-06-22 23:56:08,777] DEBUG: Factorio server is running with the latest files.
+[2025-06-22 23:56:13,785] DEBUG: Factorio server is running with the latest files.
+[2025-06-22 23:56:18,792] DEBUG: Factorio server is running with the latest files.
+[2025-06-22 23:56:23,796] DEBUG: Factorio server is running with the latest files.
+[2025-06-22 23:56:28,798] DEBUG: Factorio server is running with the latest files.
+[2025-06-22 23:56:33,805] DEBUG: Factorio server is running with the latest files.
+[2025-06-22 23:56:38,810] INFO: Checking for Factorio server updates...
+[2025-06-22 23:56:38,858] DEBUG: Starting new HTTPS connection (1): factorio.com:443
+[2025-06-22 23:56:39,985] DEBUG: https://factorio.com:443 "GET /api/latest-releases HTTP/1.1" 200 None
+[2025-06-22 23:56:39,993] INFO: Current version 2.0.53 does not match expected version stable.
+[2025-06-22 23:56:39,994] INFO: Checking if players are online...
+[2025-06-22 23:56:39,995] INFO: Stopping Factorio server to update files...
+[2025-06-22 23:56:40,117] INFO: Updating Factorio server files...
+[2025-06-22 23:56:40,359] DEBUG: https://factorio.com:443 "GET /api/latest-releases HTTP/1.1" 200 None
+[2025-06-22 23:56:40,366] INFO: Backing up Factorio server files to /tmp/factorio_backup/
+[2025-06-22 23:56:41,343] INFO: Backup completed successfully to /tmp/factorio_backup/
+[2025-06-22 23:56:41,344] INFO: Removing old Factorio directory
+[2025-06-22 23:56:41,557] INFO: Pulling factorio files for version 2.0.55
+[2025-06-22 23:56:41,620] INFO: Installing Factorio server files from /tmp/factorio_downloads/factorio-headless_linux_2.0.55.tar.xz to /opt/factorio
+[2025-06-22 23:56:45,153] INFO: Creating necessary directories in /opt/factorio
+[2025-06-22 23:56:45,269] INFO: Setting permissions for Factorio server files in /opt/factorio and /factorio
+[2025-06-22 23:56:45,352] INFO: Checking for existing saves...
+[2025-06-22 23:56:45,352] INFO: No save specified, using the latest save.
+[2025-06-22 23:56:45,353] DEBUG: Generated configuration: ['--port', '34197', '--rcon-port', '27015', '--server-settings', '/factorio/config/server-settings.json', '--server-banlist', '/factorio/config/server-banlist.json', '--server-whitelist', '/factorio/config/server-whitelist.json', '--use-server-whitelist', '--server-adminlist', '/factorio/config/server-adminlist.json', '--rcon-password', 'JOVLYXYSVJE5VPP', '--server-id', '/factorio/config/server-id.json', '--mod-directory', '/factorio/mods', '--console-log', '/factorio/factorio-console.log', '--start-server-load-latest']
+[2025-06-22 23:56:45,353] INFO: Running Factorio server on port 34197 with RCON port 27015
+[2025-06-22 23:56:45,353] INFO: Executing command: runuser -u factorio -g factorio -- /opt/factorio/bin/x64/factorio --port 34197 --rcon-port 27015 --server-settings /factorio/config/server-settings.json --server-banlist /factorio/config/server-banlist.json --server-whitelist /factorio/config/server-whitelist.json --use-server-whitelist --server-adminlist /factorio/config/server-adminlist.json --rcon-password JOVLYXYSVJE5VPP --server-id /factorio/config/server-id.json --mod-directory /factorio/mods --console-log /factorio/factorio-console.log --start-server-load-latest
+[2025-06-22 23:56:45,399] INFO: Factorio server started with PID 724
+[2025-06-22 23:56:45,399] DEBUG: Factorio server is running with the latest files.
+[2025-06-22 23:56:50,404] DEBUG: Factorio server is running with the latest files.
+[2025-06-22 23:56:55,410] DEBUG: Factorio server is running with the latest files.
+[2025-06-22 23:57:00,417] DEBUG: Factorio server is running with the latest files.
+[2025-06-22 23:57:05,420] DEBUG: Factorio server is running with the latest files.
+[2025-06-22 23:57:10,429] DEBUG: Factorio server is running with the latest files.
+[2025-06-22 23:57:15,437] DEBUG: Factorio server is running with the latest files.
+[2025-06-22 23:57:20,445] DEBUG: Factorio server is running with the latest files.
+[2025-06-22 23:57:25,454] DEBUG: Factorio server is running with the latest files.
+[2025-06-22 23:57:30,469] DEBUG: Factorio server is running with the latest files.
+[2025-06-22 23:57:35,475] DEBUG: Factorio server is running with the latest files.
+[2025-06-22 23:57:40,483] DEBUG: Factorio server is running with the latest files.
+[2025-06-22 23:57:45,486] INFO: Checking for Factorio server updates...
+[2025-06-22 23:57:46,179] DEBUG: https://factorio.com:443 "GET /api/latest-releases HTTP/1.1" 200 None
+[2025-06-22 23:57:46,186] DEBUG: Factorio server is running with the latest files.
+[2025-06-22 23:57:51,193] DEBUG: Factorio server is running with the latest files.
+[2025-06-22 23:57:56,199] DEBUG: Factorio server is running with the latest files.
+[2025-06-22 23:58:01,205] DEBUG: Factorio server is running with the latest files.
+[2025-06-22 23:58:06,211] DEBUG: Factorio server is running with the latest files.
+[2025-06-22 23:58:11,214] DEBUG: Factorio server is running with the latest files.
+[2025-06-22 23:59:04,318] INFO: Manager initialized successfully.
+[2025-06-22 23:59:04,319] INFO: Factorio server files not found, downloading...
+[2025-06-22 23:59:04,320] INFO: Pulling factorio files for version 2.0.53
+[2025-06-22 23:59:04,396] INFO: Installing Factorio server files from /tmp/factorio_downloads/factorio-headless_linux_2.0.53.tar.xz to /opt/factorio
+[2025-06-22 23:59:08,254] INFO: Creating necessary directories in /opt/factorio
+[2025-06-22 23:59:08,257] INFO: Setting permissions for Factorio server files in /opt/factorio and /factorio
+[2025-06-22 23:59:08,353] INFO: Checking for existing saves...
+[2025-06-22 23:59:08,355] INFO: No saves found, creating a default save.
+[2025-06-22 23:59:08,356] INFO: Executing command: runuser -u factorio -g factorio -- /opt/factorio/bin/x64/factorio --create /factorio/saves/default_save.zip --map-gen-settings /factorio/config/map-gen-settings.json --map-settings /factorio/config/map-settings.json
+[2025-06-22 23:59:12,127] INFO: Factorio Created Save with name: default_save
+[2025-06-22 23:59:12,130] DEBUG: Generated configuration: ['--port', '34197', '--rcon-port', '27015', '--server-settings', '/factorio/config/server-settings.json', '--server-banlist', '/factorio/config/server-banlist.json', '--server-whitelist', '/factorio/config/server-whitelist.json', '--use-server-whitelist', '--server-adminlist', '/factorio/config/server-adminlist.json', '--rcon-password', 'XJCYK8PSVHTB0CS', '--server-id', '/factorio/config/server-id.json', '--mod-directory', '/factorio/mods', '--console-log', '/factorio/factorio-console.log', '--start-server', '/factorio/saves/default_save.zip']
+[2025-06-22 23:59:12,132] INFO: Running Factorio server on port 34197 with RCON port 27015
+[2025-06-22 23:59:12,133] INFO: Executing command: runuser -u factorio -g factorio -- /opt/factorio/bin/x64/factorio --port 34197 --rcon-port 27015 --server-settings /factorio/config/server-settings.json --server-banlist /factorio/config/server-banlist.json --server-whitelist /factorio/config/server-whitelist.json --use-server-whitelist --server-adminlist /factorio/config/server-adminlist.json --rcon-password XJCYK8PSVHTB0CS --server-id /factorio/config/server-id.json --mod-directory /factorio/mods --console-log /factorio/factorio-console.log --start-server /factorio/saves/default_save.zip
+[2025-06-22 23:59:12,338] INFO: Factorio server started with PID 663
+[2025-06-22 23:59:12,340] DEBUG: Factorio server is running with the latest files.
+[2025-06-22 23:59:17,345] DEBUG: Factorio server is running with the latest files.
+[2025-06-22 23:59:22,360] DEBUG: Factorio server is running with the latest files.
+[2025-06-22 23:59:27,364] DEBUG: Factorio server is running with the latest files.
+[2025-06-22 23:59:32,385] DEBUG: Factorio server is running with the latest files.
+[2025-06-22 23:59:37,393] DEBUG: Factorio server is running with the latest files.
+[2025-06-22 23:59:42,397] DEBUG: Factorio server is running with the latest files.
+[2025-06-22 23:59:47,400] DEBUG: Factorio server is running with the latest files.
+[2025-06-22 23:59:52,403] DEBUG: Factorio server is running with the latest files.
+[2025-06-22 23:59:57,407] DEBUG: Factorio server is running with the latest files.
+[2025-06-23 00:00:02,414] DEBUG: Factorio server is running with the latest files.
+[2025-06-23 00:00:07,422] DEBUG: Factorio server is running with the latest files.
+[2025-06-23 00:00:12,424] DEBUG: Factorio server is running with the latest files.
+[2025-06-23 00:00:17,428] DEBUG: Factorio server is running with the latest files.
+[2025-06-23 00:00:22,432] DEBUG: Factorio server is running with the latest files.
+[2025-06-23 00:00:27,437] DEBUG: Factorio server is running with the latest files.
+[2025-06-23 00:00:32,440] DEBUG: Factorio server is running with the latest files.
+[2025-06-23 00:00:37,447] DEBUG: Factorio server is running with the latest files.
+[2025-06-23 00:00:42,451] DEBUG: Factorio server is running with the latest files.
+[2025-06-23 00:00:47,454] DEBUG: Factorio server is running with the latest files.
+[2025-06-23 00:00:52,458] DEBUG: Factorio server is running with the latest files.
+[2025-06-23 00:00:57,461] DEBUG: Factorio server is running with the latest files.
+[2025-06-23 00:01:02,464] DEBUG: Factorio server is running with the latest files.
+[2025-06-23 00:01:07,470] DEBUG: Factorio server is running with the latest files.
+[2025-06-23 00:01:12,476] DEBUG: Factorio server is running with the latest files.
+[2025-06-23 00:01:17,481] DEBUG: Factorio server is running with the latest files.
+[2025-06-23 00:01:22,489] DEBUG: Factorio server is running with the latest files.
+[2025-06-23 00:01:27,496] DEBUG: Factorio server is running with the latest files.
+[2025-06-23 00:01:32,526] DEBUG: Factorio server is running with the latest files.
+[2025-06-23 00:01:37,534] DEBUG: Factorio server is running with the latest files.
