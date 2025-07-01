@@ -54,29 +54,29 @@ class Manager():
         LOG.info("Pulling factorio files for version %s", self.current_version)
         output_dir = '/tmp/factorio_downloads'
         os.makedirs(output_dir, exist_ok=True)
-        # output_file = os.path.join(output_dir, f'factorio_{self.current_version}.tar.xz')
-        # url = f"https://www.factorio.com/get-download/{self.current_version}/headless/linux64"
-        # response = self.session.get(url)
-        # response.raise_for_status()
-        # LOG.debug(response)
-        # with open(output_file, 'wb') as f:
-        #     f.write(response.content)
-        # LOG.info(f"Factorio server files downloaded to {output_file}")
-        # return output_file
-
-        file_name = f'factorio-headless_linux_{self.current_version}.tar.xz'
-        output_file = os.path.join(output_dir, file_name)
-        if self.current_version == '2.0.53':
-            shutil.copyfile(
-                os.path.join('/app', 'archives', file_name),
-                os.path.join(output_file)
-            )
-        elif self.current_version == '2.0.55':
-            shutil.copyfile(
-                os.path.join('/app', 'archives', file_name),
-                os.path.join(output_file)
-            )
+        output_file = os.path.join(output_dir, f'factorio_{self.current_version}.tar.xz')
+        url = f"https://www.factorio.com/get-download/{self.current_version}/headless/linux64"
+        response = self.session.get(url)
+        response.raise_for_status()
+        LOG.debug(response)
+        with open(output_file, 'wb') as f:
+            f.write(response.content)
+        LOG.info(f"Factorio server files downloaded to {output_file}")
         return output_file
+
+        # file_name = f'factorio-headless_linux_{self.current_version}.tar.xz'
+        # output_file = os.path.join(output_dir, file_name)
+        # if self.current_version == '2.0.53':
+        #     shutil.copyfile(
+        #         os.path.join('/app', 'archives', file_name),
+        #         os.path.join(output_file)
+        #     )
+        # elif self.current_version == '2.0.55':
+        #     shutil.copyfile(
+        #         os.path.join('/app', 'archives', file_name),
+        #         os.path.join(output_file)
+        #     )
+        # return output_file
 
     def backup_factorio(self) -> str:
         """Backup the Factorio server files."""
