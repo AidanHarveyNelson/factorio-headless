@@ -34,44 +34,19 @@ This will create a new Factorio server with default settings. The server will be
 | `PORT` | `34197` | Game server port (UDP) |
 | `RCON_PORT` | `27015` | RCON port (TCP) |
 | `LOG_LEVEL` | `info` | Logging level (debug, info, warning, error) |
-
-### Factorio Installation
-
-| Variable | Default | Description |
-|----------|---------|-------------|
 | `VERSION` | `stable` | Factorio version channel (stable, experimental) |
 | `FACTORIO_DIR` | `/opt/factorio` | Internal Factorio installation directory |
 | `DLC_SPACE_AGE` | `true` | Enable/disable Space Age DLC and related mods |
-
-### Save Management
-
-| Variable | Default | Description |
-|----------|---------|-------------|
 | `LOAD_LATEST_SAVE` | `true` | Load the most recent save file |
 | `SAVE_NAME` | `_autosave1` | Specific save file to load (without .zip extension) |
 | `GENERATE_NEW_SAVE` | `false` | Generate a new save instead of loading existing |
 | `SERVER_SCENARIO` | `""` | Load a specific scenario instead of a save |
 | `PRESET` | `""` | Map generation preset when creating new saves |
-
-### User and Permissions
-
-| Variable | Default | Description |
-|----------|---------|-------------|
 | `USER` | `factorio` | Username for running the server |
 | `GROUP` | `factorio` | Group name for running the server |
 | `PUID` | `845` | User ID for file permissions |
 | `PGID` | `845` | Group ID for file permissions |
-
-### Directory Paths
-
-| Variable | Default | Description |
-|----------|---------|-------------|
 | `MOUNT_DIR` | `/factorio` | Main volume mount point for persistent data |
-
-### Authentication (Optional)
-
-| Variable | Default | Description |
-|----------|---------|-------------|
 | `TOKEN` | `""` | Factorio.com authentication token for public servers |
 
 ## Volume Structure
