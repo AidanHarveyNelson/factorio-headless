@@ -1,9 +1,12 @@
-import requests
+"""Manager class to handle Factorio server operations."""
+
 import logging
+import os
 import shutil
 import sys
 import time
-import os
+
+import requests
 
 from factorio import Factorio
 
@@ -33,16 +36,16 @@ class Manager():
     def current_version(self):
         if self._current_version is None:
             if os.path.isfile(self._current_version_file):
-                with open(self._current_version_file, 'r') as f:
+                with open(self._current_version_file, 'r', encoding='utf-8') as f:
                     self.current_version = f.read().strip()
             else:
                 self.current_version = self.get_latest_releases()
         return self._current_version
-    
+
     @current_version.setter
     def current_version(self, value):
         """Set the current version of Factorio."""
-        with open(self._current_version_file, 'w') as f:
+        with open(self._current_version_file, 'w', encoding='utf-8') as f:
             f.write(value)
         self._current_version = value
 
@@ -77,7 +80,7 @@ class Manager():
 
     def backup_factorio(self) -> str:
         """Backup the Factorio server files."""
-        backup_dir = f'/tmp/factorio_backup/'
+        backup_dir = '/tmp/factorio_backup/'
         LOG.info("Backing up Factorio server files to %s", backup_dir)
         if not os.path.exists(backup_dir):
             os.makedirs(backup_dir)
@@ -88,6 +91,7 @@ class Manager():
     def install_factorio(self):
         """Install the Factorio server files."""
 
+        # To-DO: Remove the backup functionality as all required files are mounted and symlinked which will be preserved
         backup_dir = None
         if os.path.exists(self.factorio.factorio_dir):
             backup_dir = self.backup_factorio()
@@ -106,16 +110,25 @@ class Manager():
         os.makedirs(self.factorio.saves_dir, exist_ok=True)
         os.makedirs(self.factorio.scenarios_dir, exist_ok=True)
         os.makedirs(self.factorio.config_dir, exist_ok=True)
-        os.symlink(self.factorio.scenarios_dir, os.path.join(self.factorio.factorio_dir, 'scenarios'), target_is_directory=True)
-        os.symlink(self.factorio.saves_dir, os.path.join(self.factorio.factorio_dir, 'saves'), target_is_directory=True)
-        os.symlink(self.factorio.config_dir, os.path.join(self.factorio.factorio_dir, 'config'), target_is_directory=True)
+        os.symlink(self.factorio.scenarios_dir,
+                   os.path.join(self.factorio.factorio_dir, 'scenarios'),
+                   target_is_directory=True)
+        os.symlink(self.factorio.saves_dir,
+                   os.path.join(self.factorio.factorio_dir, 'saves'),
+                   target_is_directory=True)
+        os.symlink(self.factorio.config_dir,
+                   os.path.join(self.factorio.factorio_dir, 'config'),
+                   target_is_directory=True)
         shutil.copyfile(os.path.join('/app', 'config.ini'), os.path.join(self.factorio.config_dir, 'config.ini'))
-        if backup_dir:
-            shutil.rmtree(backup_dir)
 
-        LOG.info("Setting permissions for Factorio server files in %s and %s", self.factorio.factorio_dir, self.factorio.mount_dir)
+        LOG.info("Setting permissions for Factorio server files in %s and %s",
+                 self.factorio.factorio_dir,
+                 self.factorio.mount_dir)
         os.system(f'chown -R {os.environ["PUID"]}:{os.environ["PGID"]} {self.factorio.factorio_dir}')
         os.system(f'chown -R {os.environ["PUID"]}:{os.environ["PGID"]} {self.factorio.mount_dir}')
+
+        if backup_dir:
+            shutil.rmtree(backup_dir)
 
     def run(self):
         """Run the Manager to start the Factorio server."""
@@ -127,10 +140,11 @@ class Manager():
                 self.install_factorio()
                 self.factorio.start(self.factorio.generate_config())
 
-            if time.time() - last_updated_check > (60 * 60):  # Check for updates every hour
+            if time.time() - last_updated_check > (60):  # Check for updates every hour
                 LOG.info("Checking for Factorio server updates...")
                 if self.current_version != self.get_latest_releases():
-                    LOG.info("Current version %s does not match expected version %s.", self.current_version, self.factorio.version)
+                    LOG.info("Current version %s does not match expected version %s.",
+                             self.current_version, self.factorio.version)
                     if self.factorio.is_players_online():
                         LOG.info("Players are online, cannot update Factorio server files.")
                         continue
@@ -140,14 +154,16 @@ class Manager():
                     self.current_version = self.get_latest_releases()
                     self.install_factorio()
                     self.factorio.start(self.factorio.generate_config())
+                else:
+                    LOG.debug("Factorio server is up to date with version")
                 last_updated_check = time.time()
 
-            if self.factorio._process is None:
+            if not self.factorio.is_running:
                 LOG.info("Factorio server is not running, starting...")
                 self.factorio.start(self.factorio.generate_config())
-            LOG.debug("Factorio server is running with the latest files.")
-            # time.sleep(20)
+            # time.sleep(60)
             time.sleep(5)
+            LOG.debug("Finished running loop iteration, sleeping for 60 seconds.")
 
     def get_latest_releases(self) -> str:
         """Fetch the latest Factorio releases from the API."""

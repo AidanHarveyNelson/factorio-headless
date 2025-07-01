@@ -23,8 +23,14 @@ ENV PORT=34197 \
     PRESET="$PRESET" \
     FACTORIO_DIR="/opt/factorio" \
     DLC_SPACE_AGE="true" \
-    VERSION=$VERSION
-
+    VERSION=$VERSION \
+    SERVER_SCENARIO="" \
+    PRESET="" \
+    DLC_SPACE_AGE=true \
+    GENERATE_NEW_SAVE=false \
+    LOAD_LATEST_SAVE=true \
+    SAVE_NAME="_autosave1" \
+    TOKEN=""
 
 # Setup Dependencies
 RUN apt-get update

@@ -1,7 +1,9 @@
+"""Factorio server management module."""
+
 import random
+import json
 import logging
 import shutil
-import signal
 import string
 import subprocess
 import os
@@ -12,21 +14,29 @@ LOG = logging.getLogger("factorio.server")
 
 class Factorio:
     """Factorio class to handle server operations."""
-    def __init__(self, mount_dir, port, rcon_port, saves_dir, config_dir, mods_dir, scenarios_dir, script_output, dlc_space_age, version, factorio_dir):
+    # pylint: disable=too-many-positional-arguments,too-many-instance-attributes
+    def __init__(self, mount_dir, port, rcon_port, dlc_space_age, version, factorio_dir):
         """Initialize the Factorio server manager."""
 
         self.mount_dir = mount_dir
         self.port = port
         self.rcon_port = rcon_port
-        self.saves_dir = saves_dir
-        self.config_dir = config_dir
-        self.mods_dir = mods_dir
-        self.scenarios_dir = scenarios_dir
-        self.script_output = script_output
+        self.saves_dir = os.path.join(mount_dir, 'saves')
+        self.config_dir = os.path.join(mount_dir, 'config')
+        self.mods_dir = os.path.join(mount_dir, 'mods')
+        self.scenarios_dir = os.path.join(mount_dir, 'scenarios')
+        self.script_output = os.path.join(mount_dir, 'script-output')
         self.dlc_space_age = dlc_space_age
         self.version = version
         self.factorio_dir = factorio_dir
 
+        self._save_config = {
+            'load_latest': os.environ['LOAD_LATEST_SAVE'],
+            'save_name': os.environ['SAVE_NAME'],
+            'generate_new_save': os.environ['GENERATE_NEW_SAVE'],
+            'server_scenario': os.environ['SERVER_SCENARIO'],
+            'preset': os.environ['PRESET'],
+        }
         self._process = None
         self._run_command = [
             'runuser', '-u', os.environ['USER'], '-g', os.environ['GROUP'], '--',
@@ -40,30 +50,25 @@ class Factorio:
             mount_dir = os.environ["MOUNT_DIR"]
             port = os.environ["PORT"]
             rcon_port = os.environ["RCON_PORT"]
-            saves_dir = os.path.join(mount_dir, 'saves')
-            config_dir = os.path.join(mount_dir, 'config')
-            mods_dir = os.path.join(mount_dir, 'mods')
-            scenarios_dir = os.path.join(mount_dir, 'scenarios')
-            script_output = os.path.join(mount_dir, 'script-output')
             dlc_space_age = os.environ["DLC_SPACE_AGE"]
             version =       os.environ["VERSION"]
             factorio_dir = os.environ["FACTORIO_DIR"]
-        except KeyError:
-            raise KeyError("Unable to find required environment variables")
-        return cls(mount_dir, port, rcon_port, saves_dir, config_dir, mods_dir, scenarios_dir, script_output, dlc_space_age, version, factorio_dir)
+        except KeyError as error:
+            raise KeyError("Unable to find required environment variables") from error
+        return cls(mount_dir, port, rcon_port, dlc_space_age, version, factorio_dir)
 
     @property
     def rcon_password(self):
         """Return the RCON password."""
         file_path = os.path.join(self.config_dir, 'rconpw')
         if os.path.isfile(file_path):
-            with open(file_path, 'r') as f:
+            with open(file_path, 'r', encoding="utf-8") as f:
                 return f.read().strip()
-        with open(file_path, 'w') as f:
+        with open(file_path, 'w', encoding="utf-8") as f:
             passwod = ''.join(random.choices(string.ascii_uppercase + string.digits, k=15))
             f.write(passwod)
             return passwod
-    
+
     @property
     def server_settings(self):
         """Return the server settings."""
@@ -71,7 +76,7 @@ class Factorio:
         if not os.path.isfile(file_path):
             shutil.copyfile(os.path.join(self.factorio_dir, 'data', 'server-settings.example.json'), file_path)
         return file_path
-    
+
     @property
     def server_banlist(self):
         """Return the server banlist."""
@@ -85,13 +90,13 @@ class Factorio:
         if not os.path.isfile(file_path):
             shutil.copyfile(os.path.join(self.factorio_dir, 'data', 'server-whitelist.example.json'), file_path)
         return file_path
-    
+
     @property
     def server_adminlist(self): 
         """Return the server adminlist."""
         file_path = os.path.join(self.config_dir, 'server-adminlist.json')
         return file_path
-    
+
     @property
     def map_gen_settings(self):
         """Return the map generation settings."""
@@ -140,7 +145,7 @@ class Factorio:
         LOG.info("Factorio Created Save with name: %s", save_name)
         return save_name
 
-    def generate_config(self, save:str = None, load_latest: bool = False) -> list:
+    def generate_config(self) -> list:
         """Generate the Factorio server configuration."""
 
         config = [
@@ -157,42 +162,65 @@ class Factorio:
             "--console-log", os.path.join(self.mount_dir, 'factorio-console.log'),
         ]
 
-        # config = [
-        #     f"--port {self.port}",
-        #     f"--rcon-port {self.rcon_port}",
-        #     f"--server-settings {self.server_settings}",
-        #     f"--server-banlist {self.server_banlist}",
-        #     f"--server-whitelist {self.server_whitelist}",
-        #     f'--use-server-whitelist',
-        #     f'--server-adminlist {self.server_adminlist }',
-        #     f"--rcon-password {self.rcon_password}",
-        #     f"--server-id {os.path.join(self.config_dir, 'server-id.json')}",
-        #     f"--mod-directory {self.mods_dir}",
-        #     f"--console-log {os.path.join(self.mount_dir, 'factorio-console.log')}",
-        # ]
-
-        if save:
-            config = config + ["--start-server", os.path.join(self.saves_dir, save) + ".zip"]
-        elif load_latest:
-            config = config + ["--start-server-load-latest"]
-        else:
-            if not self.has_saves():
-                LOG.info("No saves found, creating a default save.")
-                # Create a default save if none exist
-                _save_name = self.create_save('default_save')
-                config = config + ["--start-server", os.path.join(self.saves_dir, _save_name) + ".zip"]
+        if not self.has_saves():
+            if self._save_config['server_scenario']:
+                config = config + [
+                    "--start-server-load-scenario", self._save_config['server_scenario'],
+                    "--preset", self._save_config['preset']
+                ]
             else:
-                LOG.info("No save specified, using the latest save.")
+                _save_name = self.create_save(self._save_config['save_name'])
+                LOG.info("Generating new save with name: %s", _save_name)
+                config = config + ["--start-server", os.path.join(self.saves_dir, _save_name) + ".zip"]
+        else:
+            if self._save_config['save_name']:
+                config = config + [
+                    "--start-server", os.path.join(self.saves_dir, self._save_config['save_name']) + ".zip"
+                ]
+            else:
                 config = config + ["--start-server-load-latest"]
 
         LOG.debug("Generated configuration: %s", config)
+        self.toggle_space_age_dlc()
         return config
+
+    def toggle_space_age_dlc(self):
+        """Enable or disable the Space Age DLC."""
+
+        space_age_mods = [
+            "elevated-rails",
+            "quality",
+            "space-age"
+        ]
+
+        dlc_enabed = os.environ.get('DLC_SPACE_AGE').lower() == 'true'
+        mod_list_path = os.path.join(self.mods_dir, 'mod-list.json')
+        if os.path.exists(mod_list_path):
+            with open(mod_list_path, 'r', encoding='utf-8') as f:
+                mod_list = json.load(f)
+        else:
+            mod_list = {"mods": []}
+
+        for mod in mod_list['mods']:
+            if mod['name'] in space_age_mods:
+                mod['enabled'] = dlc_enabed
+                space_age_mods.remove(mod['name'])
+
+        for mod_name in space_age_mods:
+            mod_list['mods'].append({
+                "name": mod_name,
+                "enabled": dlc_enabed
+            })
+
+        with open(mod_list_path, 'w', encoding='utf-8') as f:
+            json.dump(mod_list, f, indent=2)
 
     def is_players_online(self) -> bool:
         """Check if players are online."""
         LOG.info("Checking if players are online...")
         return False
 
+    # pylint: disable=consider-using-with
     def start(self, config: list):
         """Run the Factorio server."""
         LOG.info("Running Factorio server on port %s with RCON port %s", self.port, self.rcon_port)
@@ -203,46 +231,15 @@ class Factorio:
                                          stdout=open('/var/log/factorio/access.log', 'w', encoding='utf-8'),
                                          stderr=open('/var/log/factorio/error.log', 'w', encoding='utf-8'),
                                          start_new_session=True)
-        # self._process = subprocess.run(run_command)
-        # self._process = subprocess.Popen(run_command,
-        #                                  stdout=open('/var/log/factorio/access.log', 'w'),
-        #                                  stderr=open('/var/log/factorio/error.log', 'w'),
-        #                                  preexec_fn=os.setsid)
-        print(self._process)
-        print(os.system('ps aux'))
-        # self._process = subprocess.Popen(run_command)
         LOG.info("Factorio server started with PID %s", self._process.pid)
-        return
 
-    def stop(self) -> bool:
+    def stop(self):
         """Stop the Factorio server."""
-
-        # print('SIGTERM')
-        # self._process.send_signal(signal.SIGTERM)
-        # os.system('ps aux')
-        # print('SIGINT')
-        # self._process.send_signal(signal.SIGINT)
-        # os.system('ps aux')
-
-        # print('Term')
-        # os.system(f'pkill -TERM -P {self._process.pid}')
-        # os.system('ps aux')
-
-        os.system('ps aux')
-        print('Parent')
-        print(os.getpgid(self._process.pid))
-        LOG.info("Factorio server stopped with PID %s", self._process.pid)
-        os.killpg(os.getpgid(self._process.pid), signal.SIGTERM)
-        os.system('ps aux')
+        if self._process is None:
+            LOG.warning("Factorio server is not running, nothing to stop.")
+            return
+        LOG.debug("Stopping factorio server with PID %s", self._process.pid)
+        self._process.terminate()
         LOG.debug("Waiting for Factorio server process to terminate...")
         self._process.wait(60)
         LOG.info("Factorio server process terminated.")
-        # results = subprocess.run(f'ps aux | grep factorio | grep -v grep', shell=True, capture_output=True, text=True)
-        # if results.returncode != 0:
-        #     LOG.error("Failed to find Factorio server process.")
-        #     return False
-        
-        # for result in results.stdout.splitlines():
-        #     LOG.info(f"Found Factorio process: {result}")
-        #     os.system('kill -9 ' + result.split()[1])  # Kill the process by PID
-        # return True
