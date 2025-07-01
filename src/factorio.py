@@ -1,6 +1,7 @@
 """Factorio server management module."""
 
 import random
+import json
 import logging
 import shutil
 import string
@@ -29,6 +30,13 @@ class Factorio:
         self.version = version
         self.factorio_dir = factorio_dir
 
+        self._save_config = {
+            'load_latest': os.environ['LOAD_LATEST_SAVE'],
+            'save_name': os.environ['SAVE_NAME'],
+            'generate_new_save': os.environ['GENERATE_NEW_SAVE'],
+            'server_scenario': os.environ['SERVER_SCENARIO'],
+            'preset': os.environ['PRESET'],
+        }
         self._process = None
         self._run_command = [
             'runuser', '-u', os.environ['USER'], '-g', os.environ['GROUP'], '--',
@@ -82,13 +90,13 @@ class Factorio:
         if not os.path.isfile(file_path):
             shutil.copyfile(os.path.join(self.factorio_dir, 'data', 'server-whitelist.example.json'), file_path)
         return file_path
-    
+
     @property
     def server_adminlist(self): 
         """Return the server adminlist."""
         file_path = os.path.join(self.config_dir, 'server-adminlist.json')
         return file_path
-    
+
     @property
     def map_gen_settings(self):
         """Return the map generation settings."""
@@ -137,7 +145,7 @@ class Factorio:
         LOG.info("Factorio Created Save with name: %s", save_name)
         return save_name
 
-    def generate_config(self, save:str = None, load_latest: bool = False) -> list:
+    def generate_config(self) -> list:
         """Generate the Factorio server configuration."""
 
         config = [
@@ -154,22 +162,58 @@ class Factorio:
             "--console-log", os.path.join(self.mount_dir, 'factorio-console.log'),
         ]
 
-        if save:
-            config = config + ["--start-server", os.path.join(self.saves_dir, save) + ".zip"]
-        elif load_latest:
-            config = config + ["--start-server-load-latest"]
-        else:
-            if not self.has_saves():
-                LOG.info("No saves found, creating a default save.")
-                # Create a default save if none exist
-                _save_name = self.create_save('default_save')
-                config = config + ["--start-server", os.path.join(self.saves_dir, _save_name) + ".zip"]
+        if not self.has_saves():
+            if self._save_config['server_scenario']:
+                config = config + [
+                    "--start-server-load-scenario", self._save_config['server_scenario'],
+                    "--preset", self._save_config['preset']
+                ]
             else:
-                LOG.info("No save specified, using the latest save.")
+                _save_name = self.create_save(self._save_config['save_name'])
+                LOG.info("Generating new save with name: %s", _save_name)
+                config = config + ["--start-server", os.path.join(self.saves_dir, _save_name) + ".zip"]
+        else:
+            if self._save_config['save_name']:
+                config = config + [
+                    "--start-server", os.path.join(self.saves_dir, self._save_config['save_name']) + ".zip"
+                ]
+            else:
                 config = config + ["--start-server-load-latest"]
 
         LOG.debug("Generated configuration: %s", config)
+        self.toggle_space_age_dlc()
         return config
+
+    def toggle_space_age_dlc(self):
+        """Enable or disable the Space Age DLC."""
+
+        space_age_mods = [
+            "elevated-rails",
+            "quality",
+            "space-age"
+        ]
+
+        dlc_enabed = os.environ.get('DLC_SPACE_AGE').lower() == 'true'
+        mod_list_path = os.path.join(self.mods_dir, 'mod-list.json')
+        if os.path.exists(mod_list_path):
+            with open(mod_list_path, 'r', encoding='utf-8') as f:
+                mod_list = json.load(f)
+        else:
+            mod_list = {"mods": []}
+
+        for mod in mod_list['mods']:
+            if mod['name'] in space_age_mods:
+                mod['enabled'] = dlc_enabed
+                space_age_mods.remove(mod['name'])
+
+        for mod_name in space_age_mods:
+            mod_list['mods'].append({
+                "name": mod_name,
+                "enabled": dlc_enabed
+            })
+
+        with open(mod_list_path, 'w', encoding='utf-8') as f:
+            json.dump(mod_list, f, indent=2)
 
     def is_players_online(self) -> bool:
         """Check if players are online."""
