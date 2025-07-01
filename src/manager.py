@@ -61,7 +61,7 @@ class Manager():
         LOG.debug(response)
         with open(output_file, 'wb') as f:
             f.write(response.content)
-        LOG.info(f"Factorio server files downloaded to {output_file}")
+        LOG.info("Factorio server files downloaded to %s", output_file)
         return output_file
 
         # file_name = f'factorio-headless_linux_{self.current_version}.tar.xz'
